@@ -1,7 +1,6 @@
 //import React from 'react';
 
 function HappyBanner({numOfGuess}) {
-  //let numOfGuess = results.length > 0 && results.length + 1;
 
   return <div className='happy banner'>
     <p>
@@ -17,7 +16,6 @@ function SadBanner({answer}) {
 }
 
 function Banner( {status, results, answer} ) {
-  //console.log(results.length);
   return <>
   {status === 'won' && <HappyBanner numOfGuess={results.length}/>}
   {status === 'lost' && <SadBanner answer={answer}/>}
