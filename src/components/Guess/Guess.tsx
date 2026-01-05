@@ -22,7 +22,7 @@ function Guess({ value, answer }: GuessProps) {
   }
 
   return (<p className='guess'>
-    {range(WORD_LENGTH).map((num) => {
+    {range(0, WORD_LENGTH).map((num) => {
       const cell = validatedValue[num];
       return (
       <span key={num} className={cell ? `${cell.status} cell` : 'cell'}>
