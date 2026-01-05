@@ -1,24 +1,34 @@
-//import React from 'react';
-
 import { range } from '../../utils';
 import { checkGuess } from '../../game-helpers';
 
+// 1. Define the "Shape" of your props
+interface GuessProps {
+  value?:{value:string, id:string} | null,
+  answer:string
+}
 
-function Guess({ value, answer }) {
+type validatedValueType = {
+  letter: string,
+  status: 'correct' | 'misplaced' | 'incorrect' 
+}
+
+function Guess({ value, answer }: GuessProps) {
 
   const WORD_LENGTH = 5;
-  let validatedValue = [];
+  let validatedValue: validatedValueType[] = [];
 
-  if(value) {
-     validatedValue = checkGuess(value.value, answer);
+  if(value?.value) {
+     validatedValue = (checkGuess(value.value, answer) ?? []) as validatedValueType[];
   }
 
   return (<p className='guess'>
-    {range(WORD_LENGTH).map((num) => (
-      <span key={num} className={validatedValue.length > 0 ? `${validatedValue[num].status} cell` : 'cell'}>
-        { validatedValue.length > 0 ? validatedValue[num].letter : undefined }
-      </span>
-    ))}
+    {range(WORD_LENGTH).map((num) => {
+      const cell = validatedValue[num];
+      return (
+      <span key={num} className={cell ? `${cell.status} cell` : 'cell'}>
+        { cell ? cell.letter : undefined }
+      </span>);
+  })}
   </p>);
 }
 
