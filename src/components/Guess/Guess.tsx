@@ -4,7 +4,7 @@ import { GUESS_WORD_LENGTH } from '../../constants';
 
 // 1. Define the "Shape" of your props
 interface GuessProps {
-  value?:{value:string, id:string} | null,
+  value?:{value:string, id:string} | undefined,
   answer:string
 }
 
