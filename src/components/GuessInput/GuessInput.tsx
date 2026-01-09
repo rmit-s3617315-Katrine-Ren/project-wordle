@@ -1,14 +1,23 @@
 import React from 'react';
 
-function GuessInput({ results, handleResult, status }) {
+interface GuessInputProps {
+  results: {value:string, id:string}[] | [];
+  handleResult:(guess:string)=>void;
+  status: 'running' | 'won' | 'lost';
+}
+
+type inputEvent = React.ChangeEvent<HTMLInputElement>;
+type submitEvent = React.FormEvent<HTMLFormElement>;
+
+function GuessInput({ results, handleResult, status }: GuessInputProps) {
     const [guess, setGuess] = React.useState('');
 
-    function handleInput(e){
+    function handleInput(e: inputEvent){
       const input = e.target.value.toUpperCase();
       setGuess(input);
     }
 
-    function handleSubmit(e){
+    function handleSubmit( e: submitEvent ){
       e.preventDefault();
       
       //console.info("guess:" + guess);
