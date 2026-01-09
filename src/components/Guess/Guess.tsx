@@ -4,7 +4,7 @@ import { GUESS_WORD_LENGTH } from '../../constants';
 
 // 1. Define the "Shape" of your props
 interface GuessProps {
-  value?:{value:string, id:string} | undefined,
+  value?:{value:string, id:string},
   answer:string
 }
 
@@ -28,7 +28,7 @@ function Guess({ value, answer }: GuessProps) {
       const cell = validatedValue[num];
       return (
       <span key={num} className={cell ? `${cell.status} cell` : 'cell'}>
-        { cell ? cell.letter : undefined }
+        { cell ? cell.letter : '' }
       </span>);
   })}
   </p>);

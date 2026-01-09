@@ -13,7 +13,7 @@ interface GuessResultsProps {
 function GuessResults({ results, answer }: GuessResultsProps) {
   return <div className='guess-results'>
     <h3>Your Guesses:</h3>
-    {range(NUM_OF_GUESSES_ALLOWED).map(num => (<Guess key={num} value={results[num]} answer={answer} />))}
+    {results && range(NUM_OF_GUESSES_ALLOWED).map(num => (<Guess key={num} value={results[num]!} answer={answer} />))}
   </div>;
 }
 
